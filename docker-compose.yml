@@ -1,0 +1,37 @@
+version: "3.8"
+
+services:
+  gateway-service:
+    build:
+      context: ./gateway-service
+      dockerfile: dockerfile
+    container_name: gateway-service
+    ports:
+      - "9191:9191"
+    networks:
+      - ecomm-network
+  
+  product-service:
+    build: 
+      context: ./product-service
+      dockerfile: dockerfile
+    container_name: product-service
+    ports:
+      - "8084:8084"
+    networks:
+      - ecomm-network
+
+  auth-service:
+    build:
+      context: ./auth-service
+      dockerfile: dockerfile
+    container_name: auth-service
+    ports:
+      - "9898:9898"
+    networks:
+      - ecomm-network
+
+
+networks:
+  ecomm-network:
+    driver: bridge
